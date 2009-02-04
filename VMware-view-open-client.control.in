@@ -1,0 +1,12 @@
+Package: @DEB_PACKAGING_NAME@
+Version: @VIEW_VERSION_NUM@-@BUILD_NUMBER@
+Section: x11
+Priority: optional
+Architecture: @RPM_ARCH@
+Depends: rdesktop (>= 1.4.1), libc6, libssl0.9.8, libgtk2.0-0 (>= 2.8.0), libglib2.0-0 (>= 2.8.0), libxml2 (>= 2.6.0), libpng12-0 (>= 1.2.0), zlib1g (>= 1.2.3)
+Maintainer: jacob berkman  <jberkman@vmware.com>
+Description: @PRODUCT_VIEW_CLIENT_NAME@
+ @PRODUCT_VIEW_CLIENT_NAME@ allows users to connect to desktops on a
+ View Connection Server.
+Replaces: vmware-vdm-client @DEB_REPLACES@
+Conflicts: vmware-vdm-client @DEB_CONFLICTS@

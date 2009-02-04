@@ -1,0 +1,11 @@
+@DEB_PACKAGING_NAME@ (@VIEW_VERSION_NUM@-@BUILD_NUMBER@) experimental; urgency=low
+
+  * automatic build
+
+ -- jacob berkman <jberkman@vmware.com>  @DATE_R@
+
+@DEB_PACKAGING_NAME@ (0-0) experimental; urgency=low
+
+  * initial release
+
+ -- jacob berkman <jberkman@vmware.com>  Tue, 07 Oct 2008 17:22:56 -0700

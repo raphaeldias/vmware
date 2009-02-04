@@ -1,0 +1,29 @@
+/*********************************************************
+ * Copyright (C) 2008 VMware, Inc. All rights reserved.
+ *
+ * This file is part of VMware View Open Client.
+ *********************************************************/
+/*
+******************************************************************************
+*
+*   Copyright (C) 1997-2006, International Business Machines
+*   Corporation and others.  All Rights Reserved.
+*
+******************************************************************************
+* This file contains platform independent math.
+*/
+
+#include "putilimp.h"
+
+U_CAPI int32_t U_EXPORT2
+uprv_max(int32_t x, int32_t y)
+{
+    return (x > y ? x : y);
+}
+
+U_CAPI int32_t U_EXPORT2
+uprv_min(int32_t x, int32_t y)
+{
+    return (x > y ? y : x);
+}
+

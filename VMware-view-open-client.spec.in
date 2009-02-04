@@ -1,0 +1,58 @@
+Name: @PACKAGING_NAME@
+Version: @VIEW_VERSION@
+Release: @BUILD_NUMBER@
+Summary: @PRODUCT_VIEW_CLIENT_NAME@
+Group: Applications/Internet
+License: LGPL
+Autoreqprov: off
+Vendor: VMware, Inc.
+Requires: rdesktop
+BuildRoot: @RPM_STAGE_ROOT@
+Provides: VMware-vdm-client = %{version}
+Obsoletes: VMware-vdm-client < %{version}
+Conflicts: @RPM_CONFLICTS@
+
+%description
+@PRODUCT_VIEW_CLIENT_NAME@ allows users to connect to desktops on a
+View Connection Server.
+
+%package -n @PACKAGING_NAME@-lite
+Summary: @PRODUCT_VIEW_CLIENT_NAME@
+Group: Applications/Internet
+Requires: rdesktop-lite
+Provides: VMware-vdm-thinclient = %{version}
+Obsoletes: VMware-vdm-thinclient < %{version}
+Conflicts: @RPM_CONFLICTS_LITE@
+
+%description -n @PACKAGING_NAME@-lite
+@PRODUCT_VIEW_CLIENT_NAME@ allows users to connect to desktops on a
+View Connection Server.
+
+%install
+
+%post -n @PACKAGING_NAME@-lite
+/usr/sbin/squash-merge -m @PACKAGING_NAME@-lite || true
+
+%preun -n @PACKAGING_NAME@-lite
+/usr/sbin/squash-merge --unmerge @PACKAGING_NAME@-lite || true
+exit 0
+
+%files
+%defattr(-, root, root, -)
+%attr(0555, root, root) "/usr/bin/vmware-view"
+%attr(0555, root, root) "/usr/bin/vmware-view-tunnel"
+%dir "/usr/share/doc/@PACKAGING_NAME@"
+%doc "/usr/share/doc/@PACKAGING_NAME@/README.txt"
+%doc "/usr/share/doc/@PACKAGING_NAME@/open_source_licenses.txt"
+%doc "/usr/share/doc/@PACKAGING_NAME@/EULA_English-View_GA.rtf"
+%doc "/usr/share/doc/@PACKAGING_NAME@/View_Client_Admin_Guide.pdf"
+%doc "/usr/share/doc/@PACKAGING_NAME@/View_Client_Help.pdf"
+%doc "/usr/share/man/man1/vmware-view.1.gz"
+%doc "/usr/share/man/man1/vmware-view-tunnel.1.gz"
+%attr(0444, root, root) "/usr/share/pixmaps/vmware-view.png"
+%attr(0444, root, root) "/usr/share/applications/vmware-view.desktop"
+
+%if @BUILD_THINCLIENT_RPM@
+%files -n @PACKAGING_NAME@-lite
+%attr (400, root, root) "/var/lib/addons/@PACKAGING_NAME@-lite.squash"
+%endif
